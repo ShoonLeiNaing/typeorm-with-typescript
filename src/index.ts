@@ -1,4 +1,7 @@
 import { createConnection } from "typeorm";
+import { Banker } from "./entities/Banker";
+import { Client } from "./entities/Client";
+import { Person } from "./entities/utils/Person";
 
 const main = async () => {
   try {
@@ -9,6 +12,8 @@ const main = async () => {
       username: "shoonlei",
       password: undefined,
       database: "typeorm",
+      entities: [Client, Banker, Person],
+      synchronize: true,
     });
     console.log("Database connect");
   } catch (error) {
