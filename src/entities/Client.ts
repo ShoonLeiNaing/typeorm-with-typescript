@@ -6,6 +6,12 @@ import { Person } from "./utils/Person";
 @Entity("client") //decorator, for the table name 'client'
 export class Client extends Person {
   @Column({
+    unique: true,
+    length: 10,
+  })
+  card_number: string;
+
+  @Column({
     type: "numeric",
   })
   balance: number;

@@ -1,7 +1,12 @@
 import { createConnection } from "typeorm";
+import express from "express";
 import { Banker } from "./entities/Banker";
 import { Client } from "./entities/Client";
 import { Transaction } from "./entities/Transaction";
+import { createClientRouter } from "./routes/create_client";
+import { createBankerRouter } from "./routes/create_banker";
+
+const app = express();
 
 const main = async () => {
   try {
@@ -16,6 +21,14 @@ const main = async () => {
       synchronize: true,
     });
     console.log("Database connect");
+
+    //server and middleware
+    app.use(express.json());
+    app.listen(8080, () => {
+      console.log("Server is running on port 8080");
+    });
+    app.use(createClientRouter);
+    app.use(createBankerRouter);
   } catch (error) {
     console.error(error);
     throw new Error("Unable to connect to database");
