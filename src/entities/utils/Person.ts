@@ -1,17 +1,15 @@
 import {
   Entity,
   Column,
-  PrimaryColumn,
   CreateDateColumn,
   UpdateDateColumn,
   BaseEntity,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 
 @Entity() //decorator, for the table name 'client'
 export class Person extends BaseEntity {
-  @PrimaryColumn({
-    type: "uuid",
-  })
+  @PrimaryGeneratedColumn()
   id: string;
 
   @Column() //Column decorator

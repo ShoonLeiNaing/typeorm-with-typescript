@@ -1,4 +1,6 @@
-import { Entity, Column } from "typeorm";
+import { Entity, Column, OneToMany, ManyToMany } from "typeorm";
+import { Banker } from "./Banker";
+import { Transaction } from "./Transaction";
 import { Person } from "./utils/Person";
 
 @Entity("client") //decorator, for the table name 'client'
@@ -28,4 +30,10 @@ export class Client extends Person {
     default: [],
   })
   family_members: string[];
+
+  @ManyToMany(() => Banker)
+  bankers: Banker[];
+
+  @OneToMany(() => Transaction, (transaction) => transaction.client)
+  transactions: Transaction[];
 }
