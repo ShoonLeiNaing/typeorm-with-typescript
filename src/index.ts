@@ -1,1 +1,24 @@
-console.log("hello");
+import { createConnection } from "typeorm";
+import { Banker } from "./entities/Banker";
+import { Client } from "./entities/Client";
+import { Transaction } from "./entities/Transaction";
+
+const main = async () => {
+  try {
+    await createConnection({
+      type: "postgres",
+      host: "localhost",
+      port: 5432,
+      username: "shoonlei",
+      password: undefined,
+      database: "typeorm",
+      entities: [Client, Banker, Transaction],
+      synchronize: true,
+    });
+    console.log("Database connect");
+  } catch (error) {
+    console.error(error);
+    throw new Error("Unable to connect to database");
+  }
+};
+main();
