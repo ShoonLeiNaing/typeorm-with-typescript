@@ -9,7 +9,7 @@ router.post("/api/create-client", async (req, res) => {
     last_name: lastName,
     email,
     card_number: cardNumber,
-    balance,
+    balance: parseInt(balance),
   });
   await client.save();
   return res.json(client);

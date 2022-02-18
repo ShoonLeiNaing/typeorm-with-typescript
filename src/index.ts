@@ -8,6 +8,8 @@ import { createBankerRouter } from "./routes/create_banker";
 import { createTransactionRouter } from "./routes/create_transaction";
 import { connectBankerAndClientRouter } from "./routes/connect_banker_and_client";
 import { deleteClientRouter } from "./routes/delete_client";
+import { getAllClientsRouter } from "./routes/fetch_clients";
+import { fetchClientByIdRouter } from "./routes/fetch_client_by_id";
 
 const app = express();
 
@@ -34,6 +36,8 @@ const main = async () => {
     app.use(createBankerRouter);
     app.use(createTransactionRouter);
     app.use(connectBankerAndClientRouter);
+    app.use(getAllClientsRouter);
+    app.use(fetchClientByIdRouter);
     app.use(deleteClientRouter);
   } catch (error) {
     console.error(error);
