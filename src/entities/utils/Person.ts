@@ -23,12 +23,6 @@ export class Person extends BaseEntity {
   })
   email: string;
 
-  @Column({
-    unique: true,
-    length: 10,
-  })
-  card_number: string;
-
   @CreateDateColumn()
   created_at: Date;
 
